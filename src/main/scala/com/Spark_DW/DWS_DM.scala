@@ -13,11 +13,8 @@ import org.slf4j.LoggerFactory
   */
 object DWS_DM {
   def main(args: Array[String]): Unit = {
-//    System.setProperty("hadoop.home.dir", "F:\\soft\\hadoop-common-2.2.0-bin-master.zip\\hadoop-common-2.2.0-bin-master")
-//    val conf = new SparkConf().setAppName(Constan.SPARK_APP_NAME_USER).setMaster(Constan.SPARK_LOACL)
-//    val sc = new SparkContext(conf)
-//    val hiveContext = new HiveContext(sc)
-    val hiveContext = SparkSession.builder().appName("SPARK_APP_NAME_USER").master("local").enableHiveSupport().config("spark.debug.maxToStringFileds","100").getOrCreate()
+
+    val hiveContext = SparkSession.builder().appName("SPARK_APP_NAME_USER").master(Constan.SPARK_LOACL).enableHiveSupport().config("spark.debug.maxToStringFileds","100").getOrCreate()
     // 加载相应的语句
     val sql = ConfigManager.getProper(args(0))
     if(sql == null){
